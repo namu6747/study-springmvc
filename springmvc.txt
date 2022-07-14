@@ -38,3 +38,40 @@ Spring MVC로 넘어와서 템플릿에 인증 - 인가와 관련된 내용이 �
 아직은 모르지만 Controller를 거치지 않고 주문 수정과 같은
 특수한 목적을 가진 html 페이지를 UI를 통하지 않고
 브라우저 주소창의 uri를 통해 직접 접근하여 본다는 건 좀 이상하다.
+
+Jar를 사용하면 webapp 경로를 사용할 수 없다.
+정적 리소스도 클래스 경로에 함께 포함해야 한다.
+
+@RequestParam 처럼 생략 가능한 어노테이션을 사용할 때
+물론 생략하면 작성자 입장에서 편하지만 최적화와 관련 없으니
+명확하게 인식시켜줄 수 있도록 남겨두는 것도 고려해야 한다.
+
+잊지말자. RequestMapping method의 parameters annotation 생략 시
+String , int , Integer 같은 단순 타입 = @RequestParam
+나머지 = @ModelAttribute (argument resolver 로 지정해둔 타입 외)
+
+HTTP 응답
+정적 리소스
+예) 웹 브라우저에 정적인 HTML, css, js를 제공할 때는, 정적 리소스를 사용한다.
+뷰 템플릿 사용
+예) 웹 브라우저에 동적인 HTML을 제공할 때는 뷰 템플릿을 사용한다.
+HTTP 메시지 사용
+HTTP API를 제공하는 경우에는 HTML이 아니라 데이터를 전달해야 하므로, HTTP 메시지 바디에
+JSON 같은 형식으로 데이터를 실어 보낸다.
+
+스프링 부트는 클래스패스의 다음 디렉토리에 있는 정적 리소스를 제공한다.
+/static , /public , /resources , /META-INF/resources
+
+viewResolver를 통해 뷰 템플릿을 반환하는 과정에서
+void를 반환하는 방식은 명시성이 떨어지고 딱 맞는 경우도 별로 없기에 권장하지 않음
+
+?classpath
+
+
+
+
+
+
+
+
+
